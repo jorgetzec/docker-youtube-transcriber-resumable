@@ -1,0 +1,10 @@
+yt-dlp>=2023.3.4
+SpeechRecognition>=3.8.1
+moviepy==1.0.3
+pydub>=0.25.1
+imageio-ffmpeg>=0.4.0
+imageio>=2.9.0
+numpy>=1.21.0
+pillow>=8.0.0
+decorator>=4.0.0
+tqdm>=4.64.0

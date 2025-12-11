@@ -1,0 +1,48 @@
+# Entorno virtual
+YTtrans_venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Archivos de transcripción generados (se montan como volumen)
+output/
+*.wav
+*.txt
+!requirements.txt
+*.json
+segmentos_transcripcion/
+temp_audio/
+
+# Archivos de prueba (mantener test_transcriptor_cli_resumable.py)
+test_transcriptor_cli.py
+*.bat
+!docker-run.bat
+*.md
+!README.md
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Git
+.git/
+.gitignore
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Archivos de documentación antigua
+README_ACTUALIZADO.md
+SISTEMA_RECUPERACION.md
+transcriptor_cli-info_mejoras.md
+
+# Directorios de transcripciones existentes
+clase*/
+

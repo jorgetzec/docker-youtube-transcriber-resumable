@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+env/
+ENV/
+YTtrans_venv/
+
+# Docker Output & Temp Files
+output/
+segmentos_transcripcion/
+temp_audio/
+*.wav
+
+# Logs and State
+*.log
+estado_procesamiento_*.json
+info_transcripcion_*.json
+
+# Specific Transcription Files
+*.txt
+!requirements.txt
+
+# OS Files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# User Specified Ignored Files
+SPA1_20251118_Ricky.md

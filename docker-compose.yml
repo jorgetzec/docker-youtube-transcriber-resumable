@@ -1,0 +1,18 @@
+services:
+  transcriptor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: youtube-transcriber:latest
+    volumes:
+      # Montar directorio de salida para persistir transcripciones
+      - ./output:/app/output
+      # Montar directorio actual para acceso a archivos locales y guardar transcripciones
+      - .:/app/workspace
+    working_dir: /app/workspace
+    environment:
+      - PYTHONUNBUFFERED=1
+    # No mantener el contenedor corriendo
+    stdin_open: false
+    tty: false
+
