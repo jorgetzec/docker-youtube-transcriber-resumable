@@ -19,7 +19,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copiar scripts de Python
 COPY transcriptor_cli_resumable.py .
-COPY transcriptor_cli.py .
 COPY limpiar_archivos_temporales.py .
 COPY test_transcriptor_cli_resumable.py .
 

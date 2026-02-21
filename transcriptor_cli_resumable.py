@@ -146,10 +146,12 @@ def descargar_video_youtube(url, ruta_salida='.', titulo_video=None):
         ffmpeg_path = obtener_ruta_ffmpeg()
         
         # Configuración para obtener solo la información del video
+        # Usar cliente android/ios suele evitar 403 en Docker (sin runtime JavaScript)
         ydl_info_opts = {
             'quiet': True,
             'no_warnings': True,
             'extract_flat': False,
+            'extractor_args': {'youtube': {'player_client': ['android', 'web']}},
         }
         
         with yt_dlp.YoutubeDL(ydl_info_opts) as ydl:
@@ -178,13 +180,14 @@ def descargar_video_youtube(url, ruta_salida='.', titulo_video=None):
         if duration:
             logger.info(f"Duración: {duration // 60}:{duration % 60:02d} minutos")
         
-        # Configuración para la descarga
+        # Configuración para la descarga (mismo cliente para evitar 403)
         ydl_download_opts = {
             'format': 'bestaudio/best',
             'outtmpl': os.path.join(directorio_video, '%(title)s.%(ext)s'),
             'quiet': False,
             'no_warnings': False,
             'extract_flat': False,
+            'extractor_args': {'youtube': {'player_client': ['android', 'web']}},
         }
         
         with yt_dlp.YoutubeDL(ydl_download_opts) as ydl:

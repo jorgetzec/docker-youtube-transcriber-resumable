@@ -1,33 +1,37 @@
 # YouTube Transcriber - Herramienta de Transcripción con Docker
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Docker](https://img.shields.io/badge/Docker-required-blue.svg)](https://www.docker.com/)
+[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
+
 Herramienta profesional para descargar el audio de videos de YouTube y transcribirlos a texto utilizando reconocimiento de voz de Google, con sistema completo de recuperación y reanudación.
 
-## 🚀 Características Principales
+## Características Principales
 
-- ✅ **Descarga automática** de audio de videos de YouTube
-- ✅ **Conversión automática** a formato WAV
-- ✅ **Transcripción inteligente** con reconocimiento de voz de Google
-- ✅ **Sistema de recuperación completo** - Reanuda desde donde se quedó
-- ✅ **Detección automática** de segmentos ya transcritos
-- ✅ **Soporte multi-idioma** (español, inglés, francés, alemán, italiano, portugués)
-- ✅ **División automática** de archivos grandes en segmentos
-- ✅ **Guardado incremental** de segmentos individuales
-- ✅ **Manejo robusto de interrupciones** - Conserva archivos en caso de error
-- ✅ **Containerizado con Docker** - Fácil instalación y uso
+- **Descarga automática** de audio de videos de YouTube
+- **Conversión automática** a formato WAV
+- **Transcripción inteligente** con reconocimiento de voz de Google
+- **Sistema de recuperación completo** - Reanuda desde donde se quedó
+- **Detección automática** de segmentos ya transcritos
+- **Soporte multi-idioma** (español, inglés, francés, alemán, italiano, portugués)
+- **División automática** de archivos grandes en segmentos
+- **Guardado incremental** de segmentos individuales
+- **Manejo robusto de interrupciones** - Conserva archivos en caso de error
+- **Containerizado con Docker** - Fácil instalación y uso
 
-## 📋 Requisitos
+## Requisitos
 
 - **Docker** y **Docker Compose** instalados
 - Conexión a Internet estable
 - Mínimo 100MB de espacio libre en disco
 
-## 🐳 Instalación con Docker
+## Instalación con Docker
 
 ### 1. Clonar o descargar el proyecto
 
 ```bash
-git clone <repo-url>
-cd 20250816_YT-Transcription
+git clone https://github.com/jorgetzec/docker-youtube-transcriber-resumable.git
+cd docker-youtube-transcriber-resumable
 ```
 
 ### 2. Construir la imagen Docker
@@ -42,7 +46,7 @@ docker-compose build
 docker-compose run --rm transcriptor python test_transcriptor_cli_resumable.py
 ```
 
-## 📖 Uso
+## Uso
 
 ### Uso Básico
 
@@ -109,35 +113,35 @@ En Windows PowerShell:
 docker-compose run --rm -v ${PWD}/transcripciones:/app/output transcriptor python transcriptor_cli_resumable.py "URL" -o /app/output --verbose
 ```
 
-## 📁 Archivos Generados
+## Archivos Generados
 
 ### Estructura de Archivos
 
 Cada video se organiza en su propio directorio para evitar conflictos al procesar múltiples videos simultáneamente:
 
 ```
-📁 Directorio de salida/
-└── 📁 [TITULO_VIDEO]/                       # Directorio único por video
-    ├── 📄 Transcripcion - [TITULO].txt      # Transcripción completa
-    ├── 📄 estado_procesamiento_[TITULO].json # Estado del procesamiento
-    ├── 📄 [TITULO].wav                      # Archivo de audio (con --keep-files)
-    ├── 📄 info_transcripcion_[TITULO].json  # Información completa (con --keep-files)
-    ├── 📁 segmentos_transcripcion/          # Segmentos individuales
-    │   ├── 📄 Segmento_001_de_137_[TITULO].txt
-    │   ├── 📄 Segmento_002_de_137_[TITULO].txt
+Directorio de salida/
+└── [TITULO_VIDEO]/                       # Directorio único por video
+    ├── Transcripcion - [TITULO].txt      # Transcripción completa
+    ├── estado_procesamiento_[TITULO].json # Estado del procesamiento
+    ├── [TITULO].wav                      # Archivo de audio (con --keep-files)
+    ├── info_transcripcion_[TITULO].json  # Información completa (con --keep-files)
+    ├── segmentos_transcripcion/          # Segmentos individuales
+    │   ├── Segmento_001_de_137_[TITULO].txt
+    │   ├── Segmento_002_de_137_[TITULO].txt
     │   └── ...
-    └── 📁 temp_audio/                       # Segmentos de audio (con --keep-files)
-        ├── 📄 [TITULO]_parte1.wav
+    └── temp_audio/                       # Segmentos de audio (con --keep-files)
+        ├── [TITULO]_parte1.wav
         └── ...
 ```
 
 **Ventajas de esta estructura:**
-- ✅ **Aislamiento por video**: Cada video tiene su propio directorio
-- ✅ **Procesamiento simultáneo seguro**: Múltiples videos pueden procesarse sin conflictos
-- ✅ **Limpieza independiente**: Al eliminar archivos temporales, solo afecta al video correspondiente
-- ✅ **Organización clara**: Fácil encontrar todos los archivos relacionados con un video específico
+- **Aislamiento por video**: Cada video tiene su propio directorio
+- **Procesamiento simultáneo seguro**: Múltiples videos pueden procesarse sin conflictos
+- **Limpieza independiente**: Al eliminar archivos temporales, solo afecta al video correspondiente
+- **Organización clara**: Fácil encontrar todos los archivos relacionados con un video específico
 
-## ⚙️ Opciones Disponibles
+## Opciones Disponibles
 
 | Opción | Descripción | Ejemplo |
 |--------|-------------|---------|
@@ -157,7 +161,7 @@ Cada video se organiza en su propio directorio para evitar conflictos al procesa
 - `it-IT` - Italiano
 - `pt-BR` - Portugués
 
-## 🔄 Sistema de Recuperación
+## Sistema de Recuperación
 
 ### ¿Cómo Funciona?
 
@@ -181,10 +185,10 @@ docker-compose run --rm transcriptor python transcriptor_cli_resumable.py "URL" 
 
 **Salida esperada:**
 ```
-✓ Estado de procesamiento cargado: estado_procesamiento_Titulo.json
-✓ Encontrados 44 segmentos ya transcritos
-⏭️ Saltando segmento 1 (ya completado)
-⏭️ Saltando segmento 2 (ya completado)
+Estado de procesamiento cargado: estado_procesamiento_Titulo.json
+Encontrados 44 segmentos ya transcritos
+Saltando segmento 1 (ya completado)
+Saltando segmento 2 (ya completado)
 ...
 Procesando segmento 45 de 137...
 ```
@@ -204,11 +208,11 @@ El script mantiene un archivo `estado_procesamiento_[TITULO].json` que registra:
 }
 ```
 
-## 🛠️ Scripts Disponibles
+## Scripts Disponibles
 
 ### Scripts Principales
 
-#### `transcriptor_cli_resumable.py` ⭐ (RECOMENDADO)
+#### `transcriptor_cli_resumable.py` (RECOMENDADO)
 - **Descripción**: Script principal con sistema completo de recuperación
 - **Características**:
   - Recuperación automática de interrupciones
@@ -236,7 +240,7 @@ El script mantiene un archivo `estado_procesamiento_[TITULO].json` que registra:
   docker-compose run --rm transcriptor python test_transcriptor_cli_resumable.py
   ```
 
-## 🔧 Solución de Problemas
+## Solución de Problemas
 
 ### Error de dependencias
 
@@ -270,7 +274,7 @@ docker-compose build --no-cache
 docker-compose build --no-cache
 ```
 
-## 🎯 Casos de Uso
+## Casos de Uso
 
 ### Caso 1: Interrupción por error de red
 ```bash
@@ -300,7 +304,7 @@ docker-compose run --rm transcriptor python transcriptor_cli_resumable.py "URL" 
 docker-compose run --rm transcriptor python transcriptor_cli_resumable.py "URL" -l en-US --verbose
 ```
 
-## 📝 Notas Importantes
+## Notas Importantes
 
 1. **Los segmentos se guardan automáticamente** en la carpeta `segmentos_transcripcion/`
 2. **El argumento `--keep-files`** conserva todos los archivos temporales
@@ -310,30 +314,30 @@ docker-compose run --rm transcriptor python transcriptor_cli_resumable.py "URL" 
 6. **Los archivos temporales se conservan** en caso de interrupción
 7. **La calidad de la transcripción** depende de la claridad del audio
 
-## 🔍 Monitoreo del Progreso
+## Monitoreo del Progreso
 
 ### Durante la Transcripción:
 ```
-✓ Estado guardado: estado_procesamiento_Titulo.json
+Estado guardado: estado_procesamiento_Titulo.json
 Procesando segmento 45 de 137...
-✓ Segmento 45 transcrito y guardado: Segmento_045_de_137_Titulo.txt
-✓ Estado guardado: estado_procesamiento_Titulo.json
+Segmento 45 transcrito y guardado: Segmento_045_de_137_Titulo.txt
+Estado guardado: estado_procesamiento_Titulo.json
 ```
 
 ### Al Completar:
 ```
-✓ Transcripción completada. Longitud: 15420 caracteres
-✓ Estado guardado: estado_procesamiento_Titulo.json
-✓ Archivos temporales eliminados
+Transcripción completada. Longitud: 15420 caracteres
+Estado guardado: estado_procesamiento_Titulo.json
+Archivos temporales eliminados
 ```
 
 ### En Interrupción:
 ```
-⚠️ Proceso interrumpido por el usuario
-⚠️ Proceso interrumpido - archivos temporales conservados para reanudación
+Proceso interrumpido por el usuario
+Proceso interrumpido - archivos temporales conservados para reanudación
 ```
 
-## 🧹 Limpieza de Archivos Temporales
+## Limpieza de Archivos Temporales
 
 ### Usar el script de limpieza:
 
@@ -351,10 +355,10 @@ docker-compose run --rm transcriptor python limpiar_archivos_temporales.py --tit
 docker-compose run --rm transcriptor python limpiar_archivos_temporales.py --directorio ./clase6 --limpiar
 ```
 
-## 📦 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
-20250816_YT-Transcription/
+docker-youtube-transcriber-resumable/
 ├── README.md                          # Esta documentación
 ├── requirements.txt                   # Dependencias de Python
 ├── Dockerfile                         # Configuración de Docker
@@ -367,27 +371,27 @@ docker-compose run --rm transcriptor python limpiar_archivos_temporales.py --dir
 └── test_transcriptor_cli_resumable.py # Script de pruebas
 ```
 
-## 🎉 Ventajas del Sistema de Recuperación
+## Ventajas del Sistema de Recuperación
 
 ### 1. Ahorro de Tiempo
-- ✅ **No repite trabajo**: Salta segmentos ya transcritos
-- ✅ **Reanudación instantánea**: Detecta estado automáticamente
-- ✅ **Progreso preservado**: No pierde trabajo realizado
-- ✅ **No redescarga**: Conserva archivos de audio en interrupciones
+- **No repite trabajo**: Salta segmentos ya transcritos
+- **Reanudación instantánea**: Detecta estado automáticamente
+- **Progreso preservado**: No pierde trabajo realizado
+- **No redescarga**: Conserva archivos de audio en interrupciones
 
 ### 2. Robustez
-- ✅ **Interrupciones seguras**: Puede interrumpirse en cualquier momento
-- ✅ **Errores de red**: Reanuda después de errores de conexión
-- ✅ **Fallos del sistema**: Continúa después de reinicios
-- ✅ **Archivos preservados**: No elimina archivos en interrupciones
+- **Interrupciones seguras**: Puede interrumpirse en cualquier momento
+- **Errores de red**: Reanuda después de errores de conexión
+- **Fallos del sistema**: Continúa después de reinicios
+- **Archivos preservados**: No elimina archivos en interrupciones
 
 ### 3. Flexibilidad
-- ✅ **Reinicio opcional**: `--force-restart` para empezar de nuevo
-- ✅ **Verificación automática**: Detecta si ya está completado
-- ✅ **Estado transparente**: Archivos JSON legibles
-- ✅ **Limpieza manual**: Script para limpiar archivos cuando sea necesario
+- **Reinicio opcional**: `--force-restart` para empezar de nuevo
+- **Verificación automática**: Detecta si ya está completado
+- **Estado transparente**: Archivos JSON legibles
+- **Limpieza manual**: Script para limpiar archivos cuando sea necesario
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto está bajo la Licencia MIT.
 
